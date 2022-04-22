@@ -91,10 +91,10 @@ Student_id			INT				NOT NULL,
 		CONSTRAINT FKey_Student_marks_id FOREIGN KEY (Student_id)
 			REFERENCES Students(Student_id) ON DELETE CASCADE  ON UPDATE CASCADE,
 Employee_id			INT				NOT NULL,
-		CONSTRAINT FKey_Employee_id FOREIGN KEY (Employee_id)
+		CONSTRAINT FKey_Employee_marks_id FOREIGN KEY (Employee_id)
 			REFERENCES Employees(Employee_id) ON DELETE CASCADE  ON UPDATE CASCADE,
 Discipline_id			INT				NOT NULL,
-		CONSTRAINT FKey_Discipline_id FOREIGN KEY (Discipline_id)
+		CONSTRAINT FKey_Discipline_marks_id FOREIGN KEY (Discipline_id)
 			REFERENCES Disciplines(Discipline_id) ON DELETE CASCADE  ON UPDATE CASCADE,
 Mark INT NOT NULL,
 Date date NOT NULL,
