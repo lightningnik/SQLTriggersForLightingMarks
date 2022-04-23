@@ -45,14 +45,14 @@ CREATE TABLE Employees
 	Surname				varchar(20)  NOT NULL,
 	Name				varchar(20)  NOT NULL,
 	Patronymic			varchar(20)  NOT NULL,
-	Role				varchar(20)  NOT NULL,
+	Role_Employee		varchar(20)  NOT NULL,
 	Date_Of_Birth		date		 NOT NULL,
 	Phone_number		varchar(50)  NOT NULL UNIQUE,
 	Mail				varchar(50)  NOT NULL UNIQUE,
 	Password			varchar(50)	 NOT NULL UNIQUE,
 	CHECK (Phone_number like '+7[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'),
 	CHECK (Mail like '%@%.%'),
-	CHECK (role = 'Преподаватель' OR role = 'Админимтратор')
+	CHECK (Role_Employee like 'Преподаватель' OR Role_Employee like 'Администратор')
 )
 
 GO
