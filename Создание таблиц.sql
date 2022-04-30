@@ -60,7 +60,7 @@ GO
 CREATE TABLE Disciplines
 (
 	Discipline_id  INT Identity (1,1) PRIMARY KEY ,
-	Name_Discipline	varchar(20)		NOT NULL,
+	Name_Discipline	varchar(50)	UNIQUE	NOT NULL,
 )
 
 GO
@@ -68,7 +68,7 @@ GO
 CREATE TABLE Groups
 (
 	Group_id    INT Identity (1,1) PRIMARY KEY ,
-	Name_Group	varchar(20)		NOT NULL UNIQUE,
+	Name_Group	varchar(50)		NOT NULL UNIQUE,
 )
 
 GO
@@ -78,7 +78,7 @@ CREATE TABLE Group_List
 	Student_id			INT				NOT NULL,
 		CONSTRAINT FKey_Student_id FOREIGN KEY (Student_id)
 			REFERENCES Students(Student_id) ON DELETE CASCADE  ON UPDATE CASCADE,
-	Group_id		INT	UNIQUE NOT NULL,
+	Group_id		INT	 NOT NULL,
 	            CONSTRAINT FK_group_list_id FOREIGN KEY (Group_id) 
 				  REFERENCES Groups(Group_id) ON DELETE CASCADE  ON UPDATE CASCADE,
 				  CONSTRAINT PK_id PRIMARY KEY (Student_id ,Group_id)
@@ -104,16 +104,15 @@ CONSTRAINT PK_marks_id PRIMARY KEY (Student_id ,Employee_id, Discipline_id)
 GO
 
 CREATE TABLE Lessons(
-Group_id		INT	UNIQUE NOT NULL,
-	            CONSTRAINT FK_group_lessons_id FOREIGN KEY (Group_id) 
-				  REFERENCES Groups(Group_id) ON DELETE CASCADE  ON UPDATE CASCADE,
+Name_Group	varchar(50)			NOT NULL,
+	            CONSTRAINT FK_group_lessons_name FOREIGN KEY (Name_Group) 
+				  REFERENCES Groups(Name_Group) ON DELETE CASCADE  ON UPDATE CASCADE,
 Employee_id			INT				NOT NULL,
 		CONSTRAINT FKey_Employee_id FOREIGN KEY (Employee_id)
 			REFERENCES Employees(Employee_id) ON DELETE CASCADE  ON UPDATE CASCADE,
-Discipline_id			INT				NOT NULL,
-		CONSTRAINT FKey_Discipline_id FOREIGN KEY (Discipline_id)
-			REFERENCES Disciplines(Discipline_id) ON DELETE CASCADE  ON UPDATE CASCADE,
-CONSTRAINT PK_lessons_id PRIMARY KEY (Group_id ,Employee_id, Discipline_id)
+Name_Discipline	varchar(50)		NOT NULL,
+		CONSTRAINT FKey_Discipline_name FOREIGN KEY (Name_Discipline)
+			REFERENCES Disciplines(Name_Discipline) ON DELETE CASCADE  ON UPDATE CASCADE,
 )
 
 GO
